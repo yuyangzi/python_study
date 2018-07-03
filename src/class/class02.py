@@ -1,6 +1,5 @@
 class Student():
-
-    sex = '女'
+    sum = 0
 
     def __init__(self, name, age, sex):
         self.name = name
@@ -10,8 +9,16 @@ class Student():
     def print_info(self):
         print(self.name)
 
+    @classmethod
+    def plus_sum(cls):
+        cls.sum += 1
+        print(cls.sum)
+
+
 student = Student('李白', 20, '男')
-print(student.name, Student.sex)
-print(student.age, Student.sex)
+
+Student.plus_sum()
+student.__class__.plus_sum()
+# print(student.age, Student.sex)
 
 
