@@ -1,10 +1,11 @@
 from urllib import request
 import re
 import ssl
+
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
-class Spider():
+class Spider:
     url = 'http://www.panda.tv/cate/lol'
     root_pattern = r'<div class="video-info">([\s\S]*?)</div>'
     name_pattern = r'</i>([\s\S]*?)</span>'
@@ -16,7 +17,7 @@ class Spider():
         htmls = str(htmls, encoding='utf-8')
         return htmls
 
-    def __fromat_data(self, html_string):
+    def __format_data(self, html_string):
         data_list = re.findall(self.root_pattern, html_string)
         return data_list
 
@@ -39,7 +40,6 @@ class Spider():
         l = lambda anchor: {'name': anchor['name'][0].strip(), 'number': anchor['number'][0]}
         return map(l, anchors)
 
-
     def __sort_data(self, anchors):
         anchors = sorted(anchors, key=self.__sort_seed)
         return anchors
@@ -52,7 +52,6 @@ class Spider():
             number *= 10000
         return number
 
-
     def __show(self, anchors):
         """
         显示函数
@@ -62,11 +61,12 @@ class Spider():
 
     def go(self):
         htmls = self.__fetch_content()
-        data_list = self.__fromat_data(htmls)
+        data_list = self.__format_data(htmls)
         anchors = self.__distill_data(data_list)
         anchors = list(self.__refine(anchors))
         anchors = self.__sort_data(anchors)
         self.__show(anchors)
+
 
 spider = Spider()
 spider.go()
