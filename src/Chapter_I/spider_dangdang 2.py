@@ -8,7 +8,7 @@ from lxml import html
 
 def spider_book(book_id):
     """
-    爬取当当网书籍信息
+    爬去当当网书籍信息
     :param book_id:
     :return: void
     """
