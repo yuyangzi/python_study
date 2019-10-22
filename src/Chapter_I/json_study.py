@@ -12,7 +12,7 @@ def python_dict_to_json(python_dict):
     """
     Python字典dict to json
     :param python_dict: dict
-    :return:
+    :return: void
     """
     json_data = json.dumps(python_dict)
     print(json_data)
@@ -22,7 +22,7 @@ def json_to_python_dict(json_data):
     """
     json转Python字典方法
     :param json_data: json str
-    :return:
+    :return: void
     """
 
     request = json.loads(json_data, encoding='utf-8')
